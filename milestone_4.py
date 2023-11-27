@@ -1,13 +1,20 @@
 import random
 
 class Hangman:
+    """
+    Hangman class for a word guessing game
+    """
 
     def __init__(self, word_list, num_lives=5):
-        # self.word_list = ['apple', 'banana', 'orange', 'grape', 'peach']
+        """
+        Initilization of the Hangman instance
+        word_list: a list of string with fruit names
+        num_lives: integer giving number of lives in the game
+        """
+
         random_ind = random.randint(0, 4)
         self.word = word_list[random_ind] 
         self.word = 'banana'
-        print(self.word)
         self.word_guessed = [ '_'*len(each) for each in self.word]
         self.num_letters = len([ one for one, two in zip(self.word, self.word_guessed) if one!= two ])
         self.num_lives = 6
@@ -15,6 +22,11 @@ class Hangman:
        
 
     def check_guess(self, guess):
+        """
+        Check if the guess is correct or not
+        guess: single character input
+        """
+
         tolow_guess = guess.lower()
         if tolow_guess in self.word:
             print(f'Good guess! {guess} is in the word')
@@ -30,6 +42,9 @@ class Hangman:
 
 
     def ask_for_input(self):
+        """
+        Get input from the user for a single character guess
+        """
 
         while True:
             guess = input('Please enter a letter')
@@ -47,6 +62,11 @@ class Hangman:
 
 
 def play_game(word_list):
+    """
+    Main function to run the hangman game
+    word_list: a list of word 
+    """
+    
     num_lives = 5
     game = Hangman(word_list, num_lives)
     while True:
